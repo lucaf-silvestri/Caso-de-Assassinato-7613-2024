@@ -1,0 +1,51 @@
+html,
+body {
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.body-vermelho {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to top, #6C0000, #000000);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.landing-page {
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.landing-page img {
+    height: 200px;
+    width: auto;
+}
+
+.landing-page div {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.landing-page div button {
+    margin-top: 50px;
+    width: 550px;
+    height: 90px;
+    border-radius: 25px;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+}
