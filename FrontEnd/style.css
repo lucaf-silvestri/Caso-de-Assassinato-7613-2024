@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+/* Lading Page */
+
+button {
+    font-family: "Creepster", system-ui;
+}
+
 html,
 body {
     height: fit-content;
@@ -9,43 +17,139 @@ body {
 .body-vermelho {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
     margin: 0;
     background: linear-gradient(to top, #6C0000, #000000);
     background-size: cover;
     background-repeat: no-repeat;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height: 100vh;
 }
 
-.landing-page {
+.logo {
+    width: 25%;
     margin-top: 100px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-.landing-page img {
-    height: 200px;
-    width: auto;
-}
-
-.landing-page div {
-    margin-top: 100px;
+.landing-page-div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-bottom: 100px;
+    width: 100%;
+    height: 35%;
 }
 
-.landing-page div button {
-    margin-top: 50px;
-    width: 550px;
-    height: 90px;
-    border-radius: 25px;
+.landing-page-div button {
+    width: 60%;
+    height: 20%;
+    border-radius: 20px;
     box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 27px;
+    border: none;
+    font-family: "Creepster", system-ui;
+    font-size: 3vh;
+}
+
+.botao {
+    background-color: #BB0000;
+    width: 60%;
+    height: 20%;
+    border-radius: 20px;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 27px;
+    border: none;
+    font-family: "Creepster", system-ui;
+    font-size: 3vh;
+}
+
+/* CADASTRO */
+
+.div-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10vh;
+}
+
+.div-cadastro h1 {
+    font-family: "Creepster", system-ui;
+    font-size: 10vw;
+    background: linear-gradient(to bottom, #FF0000, #3D3D3D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 12vh;
+}
+
+.div-cadastro label {
+    font-family: "Creepster", system-ui;
+    font-size: 4vh;
+    background: linear-gradient(to bottom, #FF0000, #3D3D3D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    margin-top: 45px;
+}
+
+.div-cadastro input {
+    width: 100%;
+    height: 6vh;
+    border-radius: 25px;
+    background-color: #E6E6E6;
+    border: none;
+    padding-left: 20px;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+}
+
+.inputs  {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+.cadastrar  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20vh;
+}
+
+.botao-cadastrar {
+    background-color: #BB0000;
+    width: 60%;
+    height: 6vh;
+    border-radius: 20px;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+    border: none;
+    font-family: "Creepster", system-ui;
+    font-size: 3vh;
+    margin-top: 6vh;
+}
+
+/* AVATAR */
+
+.avatares {
+    width: 70%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.avatar {
+    width: 400px;
+    height: auto;
 }
