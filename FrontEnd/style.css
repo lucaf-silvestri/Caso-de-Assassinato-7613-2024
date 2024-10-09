@@ -146,10 +146,82 @@ body {
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    column-gap: 50px;
+    margin-bottom: 20%;
 }
 
 .avatar {
-    width: 400px;
-    height: auto;
+    width: 30vw;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.body-vermelho-avatar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    background: linear-gradient(to top, #6C0000, #000000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height: fit-content;
+}
+
+/* HOME */
+
+.body-vermelho-home {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    background: linear-gradient(to top, #6C0000, #000000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 10%;
+    height: 100vh;
+}
+
+.body-vermelho-home header {
+    width: 100%;
+    height: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 15%;
+    padding-top: 3%;
+}
+
+.body-vermelho-home header img {
+    width: auto;
+    height: 80%;
+}
+
+.div-home {
+    width: 85%;
+    height: fit-content;
+    margin-top: 10%;
+}
+
+.div-home h1 {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    background: linear-gradient(to bottom, #FF0000, #3D3D3D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 12vh;
 }
