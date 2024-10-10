@@ -426,6 +426,7 @@ html {
     text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
     margin-bottom: 12vh;
+    filter: brightness(1.5);
 }
 
 .div-quiz {
@@ -448,7 +449,7 @@ html {
 .grid-button {
     padding: 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     background-color: #78008C;
     box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
     color: white;
@@ -457,9 +458,9 @@ html {
     transition: background-color 0.3s;
     height: 12vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 40vw;
     justify-self: center;
     align-self: center;
+    justify-content: center;
+    align-items: center;
 }
