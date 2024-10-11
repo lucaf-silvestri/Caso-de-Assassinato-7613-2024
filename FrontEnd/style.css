@@ -4,6 +4,7 @@
 
 * {
     font-family: "Creepster", system-ui;
+    font-weight: 100;
 }
 
 html {
@@ -420,13 +421,11 @@ html {
 .pergunta {
     font-family: "Creepster", system-ui;
     font-size: 9vw;
-    background: #78008C;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
     margin-bottom: 12vh;
     filter: brightness(1.5);
+    color: #520060;
 }
 
 .div-quiz {
@@ -463,4 +462,87 @@ html {
     align-self: center;
     justify-content: center;
     align-items: center;
+}
+
+.contagem-pontos {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.contagem {
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    color: #520060;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 0;
+    filter: brightness(1.5);
+}
+
+.contagem-verde {
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    color: #12E400;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 0;
+}
+
+.contagem-vermelho {
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    color: #FF0000;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 0;
+    filter: brightness(1.5);
+}
+
+.pontos-grandes {
+    font-family: "Creepster", system-ui;
+    font-size: 14vw;
+    color: #520060;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    margin: 0;
+}
+
+.total {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    color: #520060;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    margin: 0;
+}
+
+.divisoria {
+    height: 6vh;
+}
+
+.botao-voltar {
+    margin-top: 5vh;
+    width: 40vw;
+    height: fit-content;
+    border-radius: 15px;
+    background: #78008C;
+    color: #A9BA45;
+    border: 1px solid #000000;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    font-size: 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-right: 5%;
+}
+
+.botao-voltar img {
+    height: 6vh;
+    transform: rotate(270deg);
 }
