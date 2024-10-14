@@ -5,5 +5,11 @@
             "src": "FrontEnd/landingpage.html",
             "use": "@vercel/static"
         }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "FrontEnd/landingpage.html"
+        }
     ]
 }
