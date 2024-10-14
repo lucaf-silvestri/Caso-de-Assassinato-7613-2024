@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "landingpage.html",
+            "src": "FrontEnd/landingpage.html",
             "use": "@vercel/static"
         }
     ]
