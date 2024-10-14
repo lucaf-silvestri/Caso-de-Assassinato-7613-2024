@@ -200,7 +200,7 @@ html {
     margin: 0;
 }
 
-.body-vermelho-home header {
+header {
     width: 100%;
     height: 12vh;
     display: flex;
@@ -210,7 +210,7 @@ html {
     margin-right: 10%;
 }
 
-.body-vermelho-home header img {
+header img {
     width: auto;
     height: 80%;
     cursor: pointer;
@@ -306,7 +306,7 @@ html {
     border-radius: 25px;
     bottom: 35%;
     right: 3%;
-    
+
 }
 
 .dropdown-menu a {
@@ -401,23 +401,6 @@ html {
     margin: 0;
 }
 
-.body-roxo-home header {
-    width: 100%;
-    height: 12vh;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    margin-top: 10%;
-    margin-right: 10%;
-}
-
-.body-roxo-home header img {
-    width: auto;
-    height: 80%;
-    cursor: pointer;
-    z-index: 10;
-}
-
 .pergunta {
     font-family: "Creepster", system-ui;
     font-size: 9vw;
@@ -426,6 +409,9 @@ html {
     margin-bottom: 12vh;
     filter: brightness(1.5);
     color: #520060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .div-quiz {
@@ -545,4 +531,267 @@ html {
 .botao-voltar img {
     height: 6vh;
     transform: rotate(270deg);
+}
+
+/* QUIZ ERRO */
+
+.pergunta img {
+    width: 25%;
+    filter: brightness(0.75);
+    margin-left: 2%;
+}
+
+/* PUZZLE */
+
+.body-laranja-home {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to top, #F66602, #000000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: fit-content;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.div-home-laranja {
+    width: 85%;
+    height: fit-content;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-home-laranja h1 {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    background: #F66602;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 12vh;
+}
+
+.div-home-laranja h3 {
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    background: #000;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 0;
+    margin-top: 5vh;
+}
+
+.div-home-laranja h4 {
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    background: #F66602;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 15px 15px 20px rgba(0, 0, 0, 0.5);
+    text-align: start;
+    margin: 0;
+    margin-top: 2vh;
+    width: 84%;
+}
+
+.botao-voltar-laranja {
+    margin-top: 5vh;
+    width: 40vw;
+    height: fit-content;
+    border-radius: 15px;
+    background: #F66602;
+    color: #A9BA45;
+    border: 1px solid #000000;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    font-size: 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-right: 5%;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+}
+
+.botao-voltar-laranja img {
+    height: 6vh;
+    transform: rotate(270deg);
+}
+
+/* PONTOS EXTRAS */
+
+.div-pontos-extras {
+    width: 85%;
+    height: fit-content;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1-pontos-extras {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    color: #12E400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.pontos-grandes-verde {
+    font-family: "Creepster", system-ui;
+    font-size: 14vw;
+    color: #12E400;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    margin: 0;
+}
+
+.total-verde {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    color: #12E400;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    margin: 0;
+}
+
+.botao-voltar-preto {
+    margin-top: 5vh;
+    width: 40vw;
+    height: fit-content;
+    border-radius: 15px;
+    background: #000;
+    color: #A9BA45;
+    border: 1px solid #000000;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    font-size: 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-right: 5%;
+}
+
+.botao-voltar-preto img {
+    height: 6vh;
+    transform: rotate(270deg);
+}
+
+.body-verde-home {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to top, #12E400, #000000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: fit-content;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ACUSAÇÃO - ASSASSINO */
+
+.hora-acusacoes {
+    font-family: "Creepster", system-ui;
+    font-size: 9vw;
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    filter: brightness(1.5);
+    color: #520060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+/* FINAL QUIZ */
+
+.centralizar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+/* RANKING */
+
+.retangulos-lista {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8vh;
+}
+
+.retangulo {
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    border-radius: 25px;
+    background-color: #78008C;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 5vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 12vh;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.retangulo div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.retangulo h2 {
+    white-space: nowrap; /* Não permitir quebra de linha */
+    overflow: hidden; /* Ocultar o texto que ultrapassar */
+    text-overflow: ellipsis; /* Adicionar reticências (...) */
+}
+
+.retangulo img {
+    height: 75%;
+}
+
+/* HOME PÓS-INVESTIGAÇÃO */
+
+.botao-vermelho-homepos {
+    width: 100%;
+    height: 7vh;
+    border-radius: 20px;
+    box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 15%;
+    border: none;
+    font-family: "Creepster", system-ui;
+    font-size: 6vw;
+    background-color: #BB0000;
+    margin-bottom: 15%;
 }
