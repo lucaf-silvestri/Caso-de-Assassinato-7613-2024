@@ -24,7 +24,7 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
     senha TEXT,
     avatar TEXT,
     pontos INTEGER DEFAULT 0,
-    qrcode INTEGER DEFAULT 0,
+    qrcode INTEGER DEFAULT 0
 )`, (err) => {
     if (err) {
         console.error(err.message);
@@ -56,3 +56,7 @@ app.post('/api/cadastrar', (req, res) => {
     });
 });
 
+// Iniciar o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
