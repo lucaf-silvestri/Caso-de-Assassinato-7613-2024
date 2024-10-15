@@ -12,14 +12,14 @@ window.addEventListener('click', function (event) {
 
 // Banco de Dados
 
+// CADASTRO:
+
 async function cadastrarUsuario() {
     const nome = document.getElementById('nome').value;
     const senha1 = document.getElementById('senha1').value;
     const senha2 = document.getElementById('senha2').value;
-    const avatar = document.getElementById('avatar').value; // Adicione um campo de input para avatar
-    const qrcode = document.getElementById('qrcode').value; // Adicione um campo de input para QR Code
 
-    if (!nome || !senha1 || !senha2 || !avatar || !qrcode) {
+    if (!nome || !senha1 || !senha2) {
         document.getElementById('mensagem').innerText = "Todos os campos são obrigatórios!";
         return;
     }
@@ -35,15 +35,14 @@ async function cadastrarUsuario() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, senha: senha1, avatar, qrcode })
+            body: JSON.stringify({ nome, senha: senha1 })
         });
 
         const dados = await resposta.json();
 
         if (resposta.ok) {
             document.getElementById('mensagem').innerText = "Usuário cadastrado com sucesso!";
-            // Redirecionar para outra página após o cadastro
-            window.location.href = 'avatar.html'; // ou outra página
+            window.location.href = 'avatar.html';
         } else {
             document.getElementById('mensagem').innerText = dados.mensagem || 'Erro ao cadastrar!';
         }

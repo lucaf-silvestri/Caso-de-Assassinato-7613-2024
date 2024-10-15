@@ -11,6 +11,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+let db = new sqlite3.Database('./dados.db', (err) => {
+    if (err) {
+        console.error(err.message);
+    }
+    console.log('Conectado ao banco de dados SQLite.');
+});
+
 db.run(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT UNIQUE,
@@ -24,17 +31,9 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
     }
 });
 
-// Conectar ao banco de dados
-let db = new sqlite3.Database('./dados.db', (err) => {
-    if (err) {
-        console.error(err.message);
-    }
-    console.log('Conectado ao banco de dados SQLite.');
-});
-
 // Endpoint para cadastrar usuário
 app.post('/api/cadastrar', (req, res) => {
-    const { nome, senha, avatar, qrcode } = req.body;
+    const { nome, senha } = req.body;
 
     // Verifica se o nome já existe
     db.get('SELECT * FROM users WHERE nome = ?', [nome], (err, row) => {
@@ -47,7 +46,7 @@ app.post('/api/cadastrar', (req, res) => {
         }
 
         // Insere o novo usuário no banco de dados
-        db.run('INSERT INTO users (nome, senha, avatar, qrcode) VALUES (?, ?, ?, ?)', [nome, senha, avatar, qrcode], function (err) {
+        db.run('INSERT INTO users (nome, senha) VALUES (?, ?)', [nome, senha], function (err) {
             if (err) {
                 res.status(500).json({ mensagem: 'Erro ao cadastrar usuário.' });
                 return;
