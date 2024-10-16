@@ -96,11 +96,17 @@ function login() {
             return response.json();
         })
         .then(data => {
-            // Se o login for bem-sucedido, armazenar o token
-            localStorage.setItem('token', data.token);
+            // Se o login for bem-sucedido, armazene o token, avatar e id no localStorage
+            localStorage.setItem('token', data.token);     // Armazena o token JWT
+            localStorage.setItem('avatar', data.avatar);   // Armazena o avatar
+            localStorage.setItem('usuarioId', data.id);    // Armazena o ID do usuário
+            localStorage.setItem('pontos', data.pontos);
+            localStorage.setItem('qrcodes', data.qrcodes);
+            localStorage.setItem('nome', data.nome);
+
             document.getElementById('mensagem').innerText = 'Login bem-sucedido!';
 
-            // Redirecionar para a próxima página
+            // Redirecionar para a próxima página (por exemplo, home.html)
             window.location.href = 'home.html';
         })
         .catch(error => {
@@ -108,6 +114,92 @@ function login() {
             document.getElementById('mensagem').innerText = error.message || 'Erro ao fazer login.';
         });
 }
+
+function atualizarAvatar() {
+    // Pega o token e o ID armazenados (assumindo que foram armazenados no login)
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('usuarioId');
+
+    if (!token || !userId) {
+        console.error('Usuário não está autenticado ou ID do usuário não encontrado.');
+        return;
+    }
+
+    // Faz uma solicitação para buscar as informações do usuário (incluindo avatar, pontos e QR codes)
+    fetch(`https://5xwp6h-5000.csb.app/dadosUsuario/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao buscar dados do usuário.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Atualiza a imagem do avatar
+            const avatarUrl = data.avatar || 'default.png';
+            document.getElementById('profile-img').src = 'img/' + avatarUrl;
+
+            // Atualiza os pontos
+            const pontos = data.pontos || 0;
+            document.getElementById('pontos').textContent = pontos;
+
+            // Atualiza os QR codes
+            const qrcodes = data.qrcodes || 0;
+            document.getElementById('qrcodes').textContent = qrcodes;
+
+            // Atualiza o nome
+            const nome = data.nome || "Player";
+            document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! Encontre pistas e leia os QR CODEs para somar pontos";
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+
+// Função para verificar se o usuário está logado
+function verificarLogin() {
+    // Verifica se o token está armazenado no localStorage
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        // Se o token não estiver presente, redireciona para a página de login
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Decodifica o token para verificar a expiração
+    const payload = JSON.parse(atob(token.split('.')[1])); // Decodifica o payload do JWT
+
+    // Verifica a expiração do token de outra forma
+    const now = Date.now();
+    const expirationTime = payload.exp * 1000; // Converte para milissegundos
+
+    // Verifica se o tempo atual é maior ou igual ao tempo de expiração
+    if (now >= expirationTime) {
+        // Se o token estiver expirado, redireciona para a página de login
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Se o token for válido, chama a função para atualizar o avatar
+    atualizarAvatar();
+}
+
+// Chama a função quando a página for carregada
+window.onload = function () {
+    // Verifica se o caminho da URL é 'home.html'
+    if (window.location.pathname.includes('home.html')) {
+        verificarLogin();
+    }
+};
+
+
+
+
 
 
 
