@@ -200,7 +200,7 @@ function atualizarNome() {
     const token = localStorage.getItem("token"); // Pega o token JWT do localStorage
 
     if (!token) {
-        alert("Usuário não está logado.");
+        console.log("Usuário não está logado.");
         window.location.href = 'index.html'; // Redireciona para login se não houver token
         return;
     }
@@ -222,17 +222,17 @@ function atualizarNome() {
         .then(response => response.json())
         .then(data => {
             if (data.mensagem) {
-                alert(data.mensagem); // Exibe mensagem de sucesso ou erro
+                console.log(data.mensagem); // Exibe mensagem de sucesso ou erro
 
                 // Redireciona para a home.html se a atualização for bem-sucedida
                 window.location.href = 'home.html';
             } else {
-                alert("Erro ao tentar atualizar o nome.");
+                console.log("Erro ao tentar atualizar o nome.");
             }
         })
         .catch(error => {
             console.error("Erro:", error);
-            alert("Ocorreu um erro ao atualizar o nome.");
+            console.log("Ocorreu um erro ao atualizar o nome.");
         });
 }
 
