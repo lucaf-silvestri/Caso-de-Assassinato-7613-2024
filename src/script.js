@@ -68,6 +68,7 @@ function alterarAvatar(av) {
             } else {
                 document.getElementById('mensagemAvatar').innerText = data; // Para respostas de texto simples
             }
+            localStorage.removeItem('nomeCadastro');
             window.location.href = 'login.html';
         })
         .catch(error => {
@@ -119,6 +120,7 @@ function atualizarAvatar() {
     // Pega o token e o ID armazenados (assumindo que foram armazenados no login)
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('usuarioId');
+    console.log("Chegou 3")
 
     if (!token || !userId) {
         console.error('Usuário não está autenticado ou ID do usuário não encontrado.');
@@ -142,6 +144,7 @@ function atualizarAvatar() {
             // Atualiza a imagem do avatar
             const avatarUrl = data.avatar || 'default.png';
             document.getElementById('profile-img').src = 'img/' + avatarUrl;
+            console.log("Chegou 4")
 
             // Atualiza os pontos
             const pontos = data.pontos || 0;
@@ -164,6 +167,7 @@ function atualizarAvatar() {
 function verificarLogin() {
     // Verifica se o token está armazenado no localStorage
     const token = localStorage.getItem('token');
+    console.log("Chegou 1")
 
     if (!token) {
         // Se o token não estiver presente, redireciona para a página de login
@@ -184,18 +188,65 @@ function verificarLogin() {
         window.location.href = 'index.html';
         return;
     }
+    console.log("Chegou 2")
 
     // Se o token for válido, chama a função para atualizar o avatar
     atualizarAvatar();
 }
 
-// Chama a função quando a página for carregada
+// Função para atualizar o nome do usuário
+function atualizarNome() {
+    const novoNome = document.getElementById("nome").value; // Pega o nome inserido pelo usuário
+    const token = localStorage.getItem("token"); // Pega o token JWT do localStorage
+
+    if (!token) {
+        alert("Usuário não está logado.");
+        window.location.href = 'index.html'; // Redireciona para login se não houver token
+        return;
+    }
+
+    // Configura os dados da requisição
+    const dados = {
+        nome: novoNome
+    };
+
+    // Faz a requisição PUT ao servidor para atualizar o nome
+    fetch("https://5xwp6h-5000.csb.app/atualizar-nome", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // Adiciona o token no header
+        },
+        body: JSON.stringify(dados) // Converte os dados para JSON
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensagem) {
+                alert(data.mensagem); // Exibe mensagem de sucesso ou erro
+
+                // Redireciona para a home.html se a atualização for bem-sucedida
+                window.location.href = 'home.html';
+            } else {
+                alert("Erro ao tentar atualizar o nome.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert("Ocorreu um erro ao atualizar o nome.");
+        });
+}
+
+// Adiciona o listener ao botão específico na página trocarnome.html
 window.onload = function () {
-    // Verifica se o caminho da URL é 'home.html'
-    if (window.location.pathname.includes('home.html')) {
+    const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
+    if (botaoCadastrar) {
+        botaoCadastrar.addEventListener("click", atualizarNome);
+    }
+    else if (window.location.pathname.includes('home.html')) {
         verificarLogin();
     }
 };
+
 
 
 
