@@ -236,11 +236,56 @@ function atualizarNome() {
         });
 }
 
-// Adiciona o listener ao botão específico na página trocarnome.html
+// Função para atualizar a senha do usuário
+function atualizarSenha() {
+    const novaSenha = document.getElementById("senha").value; // Pega a senha inserido pelo usuário
+    const token = localStorage.getItem("token"); // Pega o token JWT do localStorage
+
+    if (!token) {
+        console.log("Usuário não está logado.");
+        window.location.href = 'index.html'; // Redireciona para login se não houver token
+        return;
+    }
+
+    // Configura os dados da requisição
+    const dados = {
+        senha: novaSenha
+    };
+
+    // Faz a requisição PUT ao servidor para atualizar a senha
+    fetch("https://5xwp6h-5000.csb.app/atualizar-senha", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // Adiciona o token no header
+        },
+        body: JSON.stringify(dados) // Converte os dados para JSON
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensagem) {
+                console.log(data.mensagem); // Exibe mensagem de sucesso ou erro
+
+                // Redireciona para a home.html se a atualização for bem-sucedida
+                window.location.href = 'home.html';
+            } else {
+                console.log("Erro ao tentar atualizar a senha.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            console.log("Ocorreu um erro ao atualizar a senha.");
+        });
+}
+
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
+    const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
     if (botaoCadastrar) {
         botaoCadastrar.addEventListener("click", atualizarNome);
+    }
+    else if (botaoCadastrarSenha) {
+        botaoCadastrarSenha.addEventListener("click", atualizarSenha);
     }
     else if (window.location.pathname.includes('home.html')) {
         verificarLogin();
