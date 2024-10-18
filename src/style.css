@@ -45,6 +45,7 @@ html {
     width: 100%;
     height: 35%;
     margin-top: 15%;
+    color: #000;
 }
 
 .landing-page-div button {
@@ -68,6 +69,7 @@ html {
     border: none;
     font-family: "Creepster", system-ui;
     font-size: 3vh;
+    color: #000;
 }
 
 /* CADASTRO */
@@ -112,6 +114,7 @@ html {
     padding-left: 20px;
     box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
     align-self: center;
+    font-size: 5vw;
 }
 
 .inputs {
@@ -141,6 +144,7 @@ html {
     font-family: "Creepster", system-ui;
     font-size: 3vh;
     margin-top: 6vh;
+    color: #000;
 }
 
 /* AVATAR */
@@ -292,6 +296,7 @@ header img {
     font-family: "Creepster", system-ui;
     font-size: 6vw;
     background-color: #BB0000;
+    color: #000;
 }
 
 /* MENU */

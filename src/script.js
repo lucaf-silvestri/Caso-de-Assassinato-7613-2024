@@ -5,10 +5,9 @@
 let nomeCadastro;
 
 function cadastrarUsuario() {
-    const nome = document.getElementById('nome').value;
+    const nome = document.getElementById('nome').value.toLowerCase();
     const senha = document.getElementById('senha1').value;
-    nomeCadastro = nome;
-    localStorage.setItem('nomeCadastro', nomeCadastro);
+    localStorage.setItem('nomeCadastro', nome);
 
     fetch('https://5xwp6h-5000.csb.app/cadastrarUsuario', {
         method: 'POST',
@@ -48,7 +47,7 @@ function obterNomeDoToken(token) {
 function alterarAvatar(av) {
     const avatar = av;
     const token = localStorage.getItem("token");
-    nomeCadastro = localStorage.getItem('nomeCadastro');
+    let nomeCadastro = localStorage.getItem('nomeCadastro');
 
     // Verificar se o nomeCadastro está definido
     if (!nomeCadastro) {
@@ -103,7 +102,7 @@ function alterarAvatar(av) {
 }
 
 function login() {
-    const nome = document.getElementById('nome').value;
+    const nome = document.getElementById('nome').value.toLowerCase();
     const senha = document.getElementById('senha1').value;
     const paginaPreLogin = localStorage.getItem('paginaPreLogin');
 
