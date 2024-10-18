@@ -159,7 +159,6 @@ html {
 
 .avatar {
     width: 30vw;
-    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
