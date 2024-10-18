@@ -270,9 +270,8 @@ function atualizarSenha() {
         .then(response => response.json())
         .then(data => {
             if (data.mensagem) {
-                console.log(data.mensagem); // Exibe mensagem de sucesso ou erro
+                console.log(data.mensagem);
 
-                // Redireciona para a home.html se a atualização for bem-sucedida
                 window.location.href = 'home.html';
             } else {
                 console.log("Erro ao tentar atualizar a senha.");
@@ -295,6 +294,7 @@ window.onload = function () {
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
     const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
 
+    console.log(window.location.pathname)
     if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
         verificarLogin();
     }
