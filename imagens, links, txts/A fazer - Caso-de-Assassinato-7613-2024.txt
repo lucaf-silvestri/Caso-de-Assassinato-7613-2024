@@ -1,0 +1,2 @@
+Ajeitar tamanho das letras nos inputs
+Ajeitar mensagens de erro
