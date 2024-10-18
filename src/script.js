@@ -170,8 +170,10 @@ function verificarLogin() {
     console.log("Chegou 1")
 
     if (!token) {
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
-        console.log(window.location.pathname)
+        if (window.location.pathname != "") {
+            localStorage.setItem('paginaPreLogin', window.location.pathname);
+            console.log(window.location.pathname)
+        }
         window.location.href = 'index.html';
         return;
     }
@@ -185,7 +187,10 @@ function verificarLogin() {
 
     // Verifica se o tempo atual é maior ou igual ao tempo de expiração
     if (now >= expirationTime) {
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
+        // Se o token estiver expirado, redireciona para a página de login
+        if (window.location.pathname != "") {
+            localStorage.setItem('paginaPreLogin', window.location.pathname);
+        }
         window.location.href = 'index.html';
         return;
     }
