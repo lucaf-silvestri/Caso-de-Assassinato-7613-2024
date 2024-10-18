@@ -124,7 +124,7 @@ function atualizarAvatar() {
     // Pega o token e o ID armazenados (assumindo que foram armazenados no login)
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('usuarioId');
-    console.log("Chegou 3")
+    console.log("Chegou 3");
 
     if (!token || !userId) {
         console.error('Usuário não está autenticado ou ID do usuário não encontrado.');
@@ -145,19 +145,15 @@ function atualizarAvatar() {
             return response.json();
         })
         .then(data => {
-            // Atualiza a imagem do avatar
             const avatarUrl = data.avatar || 'default.png';
             document.getElementById('profile-img').src = 'img/' + avatarUrl;
-            console.log("Chegou 4")
-            // Atualiza os pontos
+
             const pontos = data.pontos || 0;
             document.getElementById('pontos').textContent = pontos;
 
-            // Atualiza os QR codes
             const qrcodes = data.qrcodes || 0;
             document.getElementById('qrcodes').textContent = qrcodes;
 
-            // Atualiza o nome
             const nome = data.nome || "Player";
             document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! Encontre pistas e leia os QR CODEs para somar pontos";
 
@@ -174,8 +170,10 @@ function verificarLogin() {
     console.log("Chegou 1")
 
     if (!token) {
-        // Se o token não estiver presente, redireciona para a página de login
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
+        if (window.location.pathname != "") {
+            localStorage.setItem('paginaPreLogin', window.location.pathname);
+            console.log(window.location.pathname)
+        }
         window.location.href = 'index.html';
         return;
     }
@@ -190,7 +188,9 @@ function verificarLogin() {
     // Verifica se o tempo atual é maior ou igual ao tempo de expiração
     if (now >= expirationTime) {
         // Se o token estiver expirado, redireciona para a página de login
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
+        if (window.location.pathname != "") {
+            localStorage.setItem('paginaPreLogin', window.location.pathname);
+        }
         window.location.href = 'index.html';
         return;
     }
