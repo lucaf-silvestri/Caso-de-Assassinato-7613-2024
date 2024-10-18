@@ -80,6 +80,7 @@ function alterarAvatar(av) {
 function login() {
     const nome = document.getElementById('nome').value;
     const senha = document.getElementById('senha1').value;
+    const paginaPreLogin = localStorage.getItem('paginaPreLogin');
 
     fetch('https://5xwp6h-5000.csb.app/login', {
         method: 'POST',
@@ -106,9 +107,12 @@ function login() {
             localStorage.setItem('nome', data.nome);
 
             document.getElementById('mensagem').innerText = 'Login bem-sucedido!';
+            if (paginaPreLogin) {
+                window.location.href = paginaPreLogin;
+            } else {
+                window.location.href = "home.html";
+            }
 
-            // Redirecionar para a próxima página (por exemplo, home.html)
-            window.location.href = 'home.html';
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -145,7 +149,6 @@ function atualizarAvatar() {
             const avatarUrl = data.avatar || 'default.png';
             document.getElementById('profile-img').src = 'img/' + avatarUrl;
             console.log("Chegou 4")
-
             // Atualiza os pontos
             const pontos = data.pontos || 0;
             document.getElementById('pontos').textContent = pontos;
@@ -157,6 +160,7 @@ function atualizarAvatar() {
             // Atualiza o nome
             const nome = data.nome || "Player";
             document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! Encontre pistas e leia os QR CODEs para somar pontos";
+
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -171,6 +175,7 @@ function verificarLogin() {
 
     if (!token) {
         // Se o token não estiver presente, redireciona para a página de login
+        localStorage.setItem('paginaPreLogin', window.location.pathname);
         window.location.href = 'index.html';
         return;
     }
@@ -185,6 +190,7 @@ function verificarLogin() {
     // Verifica se o tempo atual é maior ou igual ao tempo de expiração
     if (now >= expirationTime) {
         // Se o token estiver expirado, redireciona para a página de login
+        localStorage.setItem('paginaPreLogin', window.location.pathname);
         window.location.href = 'index.html';
         return;
     }
@@ -278,18 +284,27 @@ function atualizarSenha() {
         });
 }
 
+function deslogar() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
+    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
+    if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
+        verificarLogin();
+    }
+
     if (botaoCadastrar) {
         botaoCadastrar.addEventListener("click", atualizarNome);
     }
     else if (botaoCadastrarSenha) {
         botaoCadastrarSenha.addEventListener("click", atualizarSenha);
     }
-    else if (window.location.pathname.includes('home.html')) {
-        verificarLogin();
-    }
+
 };
 
 

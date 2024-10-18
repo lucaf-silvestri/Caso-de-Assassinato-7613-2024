@@ -353,7 +353,7 @@ header img {
 
 @media screen and (min-height: 1000px) {
     .dropdown-menu {
-        bottom: 60%;
+        bottom: 40%;
         width: 75vw;
     }
 
@@ -772,9 +772,12 @@ header img {
 }
 
 .retangulo h2 {
-    white-space: nowrap; /* Não permitir quebra de linha */
-    overflow: hidden; /* Ocultar o texto que ultrapassar */
-    text-overflow: ellipsis; /* Adicionar reticências (...) */
+    white-space: nowrap;
+    /* Não permitir quebra de linha */
+    overflow: hidden;
+    /* Ocultar o texto que ultrapassar */
+    text-overflow: ellipsis;
+    /* Adicionar reticências (...) */
 }
 
 .retangulo img {
