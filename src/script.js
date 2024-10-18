@@ -36,14 +36,31 @@ function cadastrarUsuario() {
         });
 }
 
+// Função para decodificar o token JWT
+function obterNomeDoToken(token) {
+    // Aqui você pode usar uma biblioteca como jwt-decode para extrair o nome do token
+    const payloadBase64 = token.split('.')[1]; // Pega a parte do payload do token
+    const payloadDecoded = atob(payloadBase64); // Decodifica de Base64 para string
+    const payload = JSON.parse(payloadDecoded); // Converte a string em objeto JSON
+    return payload.nome; // Retorna o nome do usuário
+}
+
 function alterarAvatar(av) {
     const avatar = av;
-    const nomeCadastro = localStorage.getItem('nomeCadastro');
+    const token = localStorage.getItem("token");
+    nomeCadastro = localStorage.getItem('nomeCadastro');
 
     // Verificar se o nomeCadastro está definido
     if (!nomeCadastro) {
-        document.getElementById('mensagemAvatar').innerText = 'Nome de usuário não encontrado. Cadastre-se primeiro.';
-        return;
+        // Verificar se o usuário está logado (se o token existe)
+
+        if (token) {
+            // O usuário está logado, obter o nome do token
+            const nomeUsuario = obterNomeDoToken(token);
+            nomeCadastro = nomeUsuario;
+        } else {
+            window.location.href = 'index.html';
+        }
     }
 
     fetch('https://5xwp6h-5000.csb.app/alterarAvatar', {
@@ -57,24 +74,32 @@ function alterarAvatar(av) {
             // Tenta verificar o tipo de resposta
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.includes("application/json")) {
-                return response.json(); // Trata como JSON se for
+                return response.json();
             } else {
-                return response.text(); // Trata como texto se não for JSON
+                return response.text();
             }
         })
         .then(data => {
             if (typeof data === 'object') {
                 document.getElementById('mensagemAvatar').innerText = data.mensagem || 'Avatar alterado com sucesso!';
-            } else {
+            }
+            else {
                 document.getElementById('mensagemAvatar').innerText = data; // Para respostas de texto simples
             }
             localStorage.removeItem('nomeCadastro');
-            window.location.href = 'login.html';
+
+            if (token) {
+                window.location.href = 'home.html';
+            }
+            else {
+                window.location.href = 'login.html';
+            }
         })
         .catch(error => {
             console.error('Erro:', error);
             document.getElementById('mensagemAvatar').innerText = error.message || 'Erro ao alterar avatar.';
         });
+
 }
 
 function login() {
@@ -146,7 +171,7 @@ function atualizarAvatar() {
             return response.json();
         })
         .then(data => {
-            const avatarUrl = data.avatar || 'default.png';
+            const avatarUrl = data.avatar || 'jigsaw.png';
             document.getElementById('profile-img').src = 'img/' + avatarUrl;
 
             const pontos = data.pontos || 0;
@@ -221,34 +246,33 @@ function atualizarNome() {
 
 // Função para atualizar a senha do usuário
 function atualizarSenha() {
-    const novaSenha = document.getElementById("senha").value; // Pega a senha inserido pelo usuário
-    const token = localStorage.getItem("token"); // Pega o token JWT do localStorage
+    const novaSenha = document.getElementById("senha").value;
+    const token = localStorage.getItem("token");
 
     if (!token) {
         console.log("Usuário não está logado.");
-        window.location.href = 'index.html'; // Redireciona para login se não houver token
+        window.location.href = 'index.html';
         return;
     }
 
-    // Configura os dados da requisição
     const dados = {
-        senha: novaSenha
+        novaSenha: novaSenha
     };
 
-    // Faz a requisição PUT ao servidor para atualizar a senha
     fetch("https://5xwp6h-5000.csb.app/atualizar-senha", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}` // Adiciona o token no header
+            "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(dados) // Converte os dados para JSON
+        body: JSON.stringify(dados)
     })
         .then(response => response.json())
         .then(data => {
             if (data.mensagem) {
-                console.log(data.mensagem);
+                console.log(data.mensagem); // Exibe mensagem de sucesso ou erro
 
+                // Redireciona para a home.html se a atualização for bem-sucedida
                 window.location.href = 'home.html';
             } else {
                 console.log("Erro ao tentar atualizar a senha.");
@@ -268,7 +292,6 @@ function deslogar() {
 
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
-    const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
     const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
 
     atualizarAvatar();
@@ -284,10 +307,6 @@ window.onload = function () {
     if (botaoCadastrar) {
         botaoCadastrar.addEventListener("click", atualizarNome);
     }
-    else if (botaoCadastrarSenha) {
-        botaoCadastrarSenha.addEventListener("click", atualizarSenha);
-    }
-
 };
 
 
