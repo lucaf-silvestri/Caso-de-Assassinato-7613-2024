@@ -170,10 +170,7 @@ function verificarLogin() {
     console.log("Chegou 1")
 
     if (!token) {
-        if (window.location.pathname != "") {
-            localStorage.setItem('paginaPreLogin', window.location.pathname);
-            console.log(window.location.pathname)
-        }
+        localStorage.setItem('paginaPreLogin', window.location.pathname);
         window.location.href = 'index.html';
         return;
     }
@@ -187,10 +184,7 @@ function verificarLogin() {
 
     // Verifica se o tempo atual é maior ou igual ao tempo de expiração
     if (now >= expirationTime) {
-        // Se o token estiver expirado, redireciona para a página de login
-        if (window.location.pathname != "") {
-            localStorage.setItem('paginaPreLogin', window.location.pathname);
-        }
+        localStorage.setItem('paginaPreLogin', window.location.pathname);
         window.location.href = 'index.html';
         return;
     }
@@ -292,7 +286,7 @@ function deslogar() {
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
-    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
+    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html', ''];
 
     console.log(window.location.pathname)
     if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
