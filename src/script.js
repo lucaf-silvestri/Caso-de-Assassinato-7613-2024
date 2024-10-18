@@ -110,6 +110,7 @@ function login() {
             if (paginaPreLogin != '' && paginaPreLogin != null && paginaPreLogin != undefined) {
                 window.location.href = paginaPreLogin;
             } else {
+                console.log("Caminho inexistente, redirecionando para a home.")
                 window.location.href = "home.html";
             }
 
