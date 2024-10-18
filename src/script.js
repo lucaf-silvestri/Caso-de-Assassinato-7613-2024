@@ -107,7 +107,7 @@ function login() {
             localStorage.setItem('nome', data.nome);
 
             document.getElementById('mensagem').innerText = 'Login bem-sucedido!';
-            if (paginaPreLogin != '' || paginaPreLogin != null || paginaPreLogin != undefined) {
+            if (paginaPreLogin != '' && paginaPreLogin != null && paginaPreLogin != undefined) {
                 window.location.href = paginaPreLogin;
             } else {
                 window.location.href = "home.html";
