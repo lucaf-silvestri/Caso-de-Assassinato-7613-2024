@@ -294,6 +294,9 @@ window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
     const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
+    const paginaPreLogin = localStorage.getItem(paginaPreLogin);
+    console.log(paginaPreLogin);
+
     if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
         verificarLogin();
     }
