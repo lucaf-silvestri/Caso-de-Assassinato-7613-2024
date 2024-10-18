@@ -175,9 +175,6 @@ function verificarLogin() {
         window.location.href = 'index.html';
         return;
     }
-
-    // Se o token for válido, chama a função para atualizar o avatar
-    atualizarAvatar();
 }
 
 // Função para atualizar o nome do usuário
@@ -272,12 +269,16 @@ function deslogar() {
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
-    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html', '/'];
+    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
+
+    atualizarAvatar();
 
     console.log(window.location.pathname)
-    if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
+    if (window.location.pathname !== '/' && window.location.pathname !== '') {
+        if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
 
-        verificarLogin();
+            verificarLogin();
+        }
     }
 
     if (botaoCadastrar) {
