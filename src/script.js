@@ -107,7 +107,7 @@ function login() {
             localStorage.setItem('nome', data.nome);
 
             document.getElementById('mensagem').innerText = 'Login bem-sucedido!';
-            if (paginaPreLogin) {
+            if (paginaPreLogin != '' || paginaPreLogin != null || paginaPreLogin != undefined) {
                 window.location.href = paginaPreLogin;
             } else {
                 window.location.href = "home.html";
@@ -174,21 +174,6 @@ function verificarLogin() {
         window.location.href = 'index.html';
         return;
     }
-
-    // Decodifica o token para verificar a expiração
-    const payload = JSON.parse(atob(token.split('.')[1])); // Decodifica o payload do JWT
-
-    // Verifica a expiração do token de outra forma
-    const now = Date.now();
-    const expirationTime = payload.exp * 1000; // Converte para milissegundos
-
-    // Verifica se o tempo atual é maior ou igual ao tempo de expiração
-    if (now >= expirationTime) {
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
-        window.location.href = 'index.html';
-        return;
-    }
-    console.log("Chegou 2")
 
     // Se o token for válido, chama a função para atualizar o avatar
     atualizarAvatar();
@@ -286,10 +271,11 @@ function deslogar() {
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const botaoCadastrarSenha = document.querySelector("#trocarsenha .botao-cadastrar");
-    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html', ''];
+    const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
 
     console.log(window.location.pathname)
     if (!paginasSemVerificacao.some(pagina => window.location.pathname.includes(pagina))) {
+
         verificarLogin();
     }
 
