@@ -346,18 +346,59 @@ async function fetchQuestionById(id) {
     }
 }
 
-// Função principal que é chamada ao carregar a página
 async function loadQuestion() {
     const questionCount = await fetchQuestionCount();
 
     if (questionCount) {
-        // Gerar um número aleatório entre 1 e a quantidade de perguntas
-        const randomId = Math.floor(Math.random() * questionCount) + 1; // Adiciona 1 porque IDs geralmente começam em 1
+        const randomId = Math.floor(Math.random() * questionCount) + 1;
         const question = await fetchQuestionById(randomId);
 
         if (question) {
             document.querySelector('.pergunta').textContent = question.texto;
+            initQuiz(randomId);
         }
+    }
+}
+
+async function fetchAnswersByQuestionId(questionId) {
+    try {
+        const response = await fetch('https://5xwp6h-3000.csb.app/obterRespostas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_pergunta: questionId })
+        });
+
+        if (!response.ok) throw new Error('Erro ao buscar as respostas.');
+
+        const answers = await response.json();
+        return answers;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function updateQuizUI(answers) {
+    const buttonGrid = document.querySelector('.button-grid');
+    buttonGrid.innerHTML = '';
+
+    answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.className = 'grid-button';
+        button.textContent = answer.texto;
+        buttonGrid.appendChild(button);
+    });
+}
+
+async function initQuiz(id) {
+    const questionId = id;
+    const answers = await fetchAnswersByQuestionId(questionId);
+
+    if (answers) {
+        updateQuizUI(answers);
+    } else {
+        console.error('Nenhuma resposta encontrada.');
     }
 }
 
