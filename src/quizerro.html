@@ -11,7 +11,7 @@
 
 <body class="body-roxo-home">
     <header>
-        <img src="img/freddykrueger.png" alt="Ícone do Usuário" id="profile-img">
+        <img alt="Ícone do Usuário" id="profile-img">
     </header>
     <div class="div-quiz">
         <h1 class="pergunta">Você errou! <img src="img/amassada.png" alt="Imagem de abóbora amassada"></h1>
@@ -26,10 +26,10 @@
         <div class="divisoria"></div>
         <h1 class="total">Total:</h1>
         <div class="contagem-pontos">
-            <h4 class="pontos-grandes">25</h4>
+            <h4 id="pontos" class="pontos-grandes">0</h4>
             <h1 class="total">&nbsp;pontos</h1>
         </div>
-        <button class="botao-voltar">
+        <button onclick="voltarHome();" class="botao-voltar">
             <img src="img/maodezumbi.png" alt="Mão de zumbi apontando para voltar">
             Voltar
         </button>

@@ -35,13 +35,11 @@ function cadastrarUsuario() {
         });
 }
 
-// Função para decodificar o token JWT
 function obterNomeDoToken(token) {
-    // Aqui você pode usar uma biblioteca como jwt-decode para extrair o nome do token
-    const payloadBase64 = token.split('.')[1]; // Pega a parte do payload do token
-    const payloadDecoded = atob(payloadBase64); // Decodifica de Base64 para string
-    const payload = JSON.parse(payloadDecoded); // Converte a string em objeto JSON
-    return payload.nome; // Retorna o nome do usuário
+    const payloadBase64 = token.split('.')[1];
+    const payloadDecoded = atob(payloadBase64);
+    const payload = JSON.parse(payloadDecoded);
+    return payload.nome;
 }
 
 function alterarAvatar(av) {
@@ -192,6 +190,13 @@ function atualizarAvatar() {
                 const nome = data.nome || "Player";
                 document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! Parece que você encontrou uma pista";
             }
+            else if (window.location.pathname.includes("quizerro.html") || window.location.pathname.includes("quizacerto.html")) {
+                const avatarUrl = data.avatar || 'jigsaw.png';
+                document.getElementById('profile-img').src = 'img/' + avatarUrl;
+
+                const pontos = data.pontos || 0;
+                document.getElementById('pontos').textContent = pontos;
+            }
             else {
                 const avatarUrl = data.avatar || 'jigsaw.png';
                 document.getElementById('profile-img').src = 'img/' + avatarUrl;
@@ -311,14 +316,100 @@ function deslogar() {
     window.location.href = "index.html";
 }
 
-function redirecionarQRCode() {
-    const randomNum = Math.floor(Math.random() * 2) + 1;
+async function redirecionarQRCode() {
+    localStorage.removeItem('sequenciaQuiz');
+    localStorage.setItem('sequenciaQuiz', 0);
+    let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
+    localStorage.setItem('sequenciaQuiz', sequenciaQuiz);
 
-    if (randomNum === 1) {
-        window.location.href = "homepuzzle.html";
-    } else {
-        window.location.href = "homequiz.html";
+    if (sequenciaQuiz != 1) {
+        voltarHome()
     }
+    else {
+        await somar(10);
+        const token = localStorage.getItem('token');
+        const userId = obterIdDoUsuarioPeloToken(token);
+
+        const response = await fetch(`https://5xwp6h-3000.csb.app/buscarQrcodes/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar QR codes.');
+        }
+
+        const data = await response.json();
+        let qrCodesAtual = data.qrcodes;
+
+        const novosQRCodes = qrCodesAtual + 1;
+
+        const updateResponse = await fetch(`https://5xwp6h-3000.csb.app/atualizarQRCodes/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ qrcodes: novosQRCodes })
+        });
+
+        if (!updateResponse.ok) {
+            throw new Error('Erro ao atualizar QR codes.');
+        }
+
+        const randomNum = Math.floor(Math.random() * 2) + 1;
+
+        if (randomNum === 1) {
+            window.location.href = "homepuzzle.html";
+        } else {
+            window.location.href = "homequiz.html";
+        }
+    }
+}
+
+async function somar(quantidade) {
+    const token = localStorage.getItem('token');
+    const userId = obterIdDoUsuarioPeloToken(token);
+
+    const response = await fetch(`https://5xwp6h-3000.csb.app/buscarPontos/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Erro ao buscar Pontos.');
+    }
+
+    const data = await response.json();
+    let pontosAtual = data.pontos;
+
+    const novosPontos = pontosAtual + quantidade;
+
+    const updateResponse = await fetch(`https://5xwp6h-3000.csb.app/atualizarPontos/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ pontos: novosPontos })
+    });
+
+    if (!updateResponse.ok) {
+        throw new Error('Erro ao atualizar Pontos.');
+    }
+}
+
+function obterIdDoUsuarioPeloToken(token) {
+    const payloadBase64 = token.split('.')[1];
+    const decodedPayload = atob(payloadBase64);
+    const payload = JSON.parse(decodedPayload);
+    return payload.id;
 }
 
 // Função para buscar a quantidade de perguntas
@@ -347,15 +438,23 @@ async function fetchQuestionById(id) {
 }
 
 async function loadQuestion() {
-    const questionCount = await fetchQuestionCount();
+    let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
+    localStorage.setItem('sequenciaQuiz', sequenciaQuiz);
 
-    if (questionCount) {
-        const randomId = Math.floor(Math.random() * questionCount) + 1;
-        const question = await fetchQuestionById(randomId);
+    if (sequenciaQuiz != 11) {
+        voltarHome();
+    }
+    else {
+        const questionCount = await fetchQuestionCount();
 
-        if (question) {
-            document.querySelector('.pergunta').textContent = question.texto;
-            initQuiz(randomId);
+        if (questionCount) {
+            const randomId = Math.floor(Math.random() * questionCount) + 1;
+            const question = await fetchQuestionById(randomId);
+
+            if (question) {
+                document.querySelector('.pergunta').textContent = question.texto;
+                initQuiz(randomId);
+            }
         }
     }
 }
@@ -387,8 +486,22 @@ function updateQuizUI(answers) {
         const button = document.createElement('button');
         button.className = 'grid-button';
         button.textContent = answer.texto;
+
+        button.addEventListener('click', () => {
+            testAnswer(answer);
+        });
         buttonGrid.appendChild(button);
     });
+}
+
+async function testAnswer(answer) {
+    if (answer.correta) {
+        await somar(5);
+        window.location.href = 'quizacerto.html';
+    } else {
+        await somar(-5);
+        window.location.href = 'quizerro.html';
+    }
 }
 
 async function initQuiz(id) {
@@ -402,11 +515,14 @@ async function initQuiz(id) {
     }
 }
 
+function voltarHome() {
+    window.location.href = 'home.html';
+}
+
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
     const currentPage = window.location.pathname.split("/").pop();
-
     atualizarAvatar();
 
     console.log(window.location.pathname)
