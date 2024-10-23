@@ -363,7 +363,7 @@ async function redirecionarQRCode() {
         const randomNum = Math.floor(Math.random() * 2) + 1;
 
         if (randomNum === 1) {
-            window.location.href = "homepuzzle.html";
+            window.location.href = "homequiz.html";
         } else {
             window.location.href = "homequiz.html";
         }
