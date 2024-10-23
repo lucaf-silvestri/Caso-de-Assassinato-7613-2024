@@ -519,6 +519,38 @@ function voltarHome() {
     window.location.href = 'home.html';
 }
 
+// Função para buscar o puzzle e seus passos
+function fetchPuzzle() {
+    fetch('https://5xwp6h-3000.csb.app/getPuzzle')
+        .then(response => response.json())
+        .then(data => {
+            const passosContainer = document.querySelector('.div-home-laranja');
+            const botao = document.querySelector('.botao-voltar-laranja');
+            const h3 = document.querySelector('.div-home-laranja h3');
+
+            // Remove quaisquer passos anteriores antes de adicionar novos
+            passosContainer.querySelectorAll('h4').forEach(h4 => h4.remove());
+
+            // Itera pelos passos e cria um novo elemento <h4> para cada um
+            data.passos.forEach((passo, index) => {
+                const h4 = document.createElement('h4');
+                h4.innerText = `${passo.texto}`;
+                passosContainer.insertBefore(h4, h3); // Insere antes do h3 e do botão
+            });
+
+            // Opcional: adicionar uma mensagem se o puzzle não tiver passos
+            if (data.passos.length === 0) {
+                const noPassosMessage = document.createElement('h4');
+                noPassosMessage.innerText = 'Este puzzle não tem passos.';
+                passosContainer.insertBefore(noPassosMessage, h3);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar o puzzle:', error);
+        });
+}
+
+
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
     const paginasSemVerificacao = ['cadastro.html', 'login.html', 'index.html', 'avatar.html'];
@@ -535,6 +567,9 @@ window.onload = function () {
             }
             else if (currentPage === "quiz.html") {
                 loadQuestion();
+            }
+            else if (currentPage === "puzzle.html") {
+                fetchPuzzle();
             }
         }
     }
