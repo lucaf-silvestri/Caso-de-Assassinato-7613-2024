@@ -360,12 +360,12 @@ async function redirecionarQRCode() {
             throw new Error('Erro ao atualizar QR codes.');
         }
 
-        const randomNum = Math.floor(Math.random() * 2) + 1;
+        const randomNum = Math.floor(Math.random() * 4) + 1;
 
         if (randomNum === 1) {
             window.location.href = "homepuzzle.html";
         } else {
-            window.location.href = "homepuzzle.html";
+            window.location.href = "homequiz.html";
         }
     }
 }
