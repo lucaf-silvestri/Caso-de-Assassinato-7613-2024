@@ -455,6 +455,23 @@ async function redirecionarQRCode() {
     }
 }
 
+async function redirecionarPontosExtras() {
+    localStorage.removeItem('sequenciaQuiz');
+    localStorage.setItem('sequenciaQuiz', 0);
+    let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
+    localStorage.setItem('sequenciaQuiz', sequenciaQuiz);
+
+    const token = localStorage.getItem('token');
+
+    if (sequenciaQuiz != 1) {
+        voltarHome();
+    }
+    else {
+        await somar(10);
+        window.location.href = 'pontosextras.html';
+    }
+}
+
 async function somar(quantidade) {
     const token = localStorage.getItem('token');
     const userId = obterIdDoUsuarioPeloToken(token);
@@ -662,6 +679,9 @@ window.onload = function () {
             verificarLogin();
             if (currentPage === "qrcode.html") {
                 redirecionarQRCode();
+            }
+            else if (currentPage === "qrpontosextras.html") {
+                redirecionarPontosExtras();
             }
             else if (currentPage === "quiz.html") {
                 loadQuestion();
