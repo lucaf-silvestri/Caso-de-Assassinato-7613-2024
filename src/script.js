@@ -457,7 +457,7 @@ async function redirecionarQRCode() {
 
 async function redirecionarPontosExtras() {
 
-    
+
     localStorage.removeItem('sequenciaQuiz');
     localStorage.setItem('sequenciaQuiz', 0);
     let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
@@ -666,6 +666,10 @@ function fetchPuzzle() {
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
+}
+
+function quizFinalCerto(){
+    
 }
 
 window.onload = function () {
