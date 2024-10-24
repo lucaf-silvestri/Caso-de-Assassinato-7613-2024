@@ -436,14 +436,14 @@ async function redirecionarQRCode() {
                     if (puzzlesPendentes > 0) {
                         window.location.href = 'homepuzzle.html';
                     } else {
-                        window.location.href = 'homepuzzle.html';//
+                        window.location.href = 'homequiz.html';
                     }
                 })
                 .catch(error => {
                     console.error("Erro ao verificar puzzles pendentes:", error);
                 });
         } else {
-            window.location.href = "homepuzzle.html";//
+            window.location.href = "homequiz.html";
         }
     }
 }
