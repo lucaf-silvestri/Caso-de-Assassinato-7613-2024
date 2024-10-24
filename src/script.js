@@ -322,13 +322,69 @@ async function redirecionarQRCode() {
     let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
     localStorage.setItem('sequenciaQuiz', sequenciaQuiz);
 
+    const code = getQueryParam('code');
+    const token = localStorage.getItem('token');
+    const userId = obterIdDoUsuarioPeloToken(token);
+
     if (sequenciaQuiz != 1) {
         voltarHome()
     }
     else {
+        if (!token) {
+            alert('Usuário não está logado.');
+        } else {
+            fetch('https://5xwp6h-3000.csb.app/verificarQrcodeUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    qrcodeId: code
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        window.location.href = '/home.html';
+                    } else {
+                        console.log('QR Code não cadastrado para o usuário, pode prosseguir.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+        }
+
+        // Verifica se o code existe
+        if (!code) {
+            alert('Código QR não encontrado na URL.');
+        } else {
+            // Fazer a requisição ao backend para verificar se o QR Code já está cadastrado para o usuário
+            fetch('http://seu-servidor.com/verificarQrcodeUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    qrcodeId: code,
+                    userId: userId
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        window.location.href = '/home.html';
+                    } else {
+                        console.log('QR Code não cadastrado para o usuário, pode prosseguir.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+        }
+
         await somar(10);
-        const token = localStorage.getItem('token');
-        const userId = obterIdDoUsuarioPeloToken(token);
 
         const response = await fetch(`https://5xwp6h-3000.csb.app/buscarQrcodes/${userId}`, {
             method: 'GET',
@@ -550,6 +606,11 @@ function fetchPuzzle() {
         });
 }
 
+// Função para capturar o código da URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
 
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
