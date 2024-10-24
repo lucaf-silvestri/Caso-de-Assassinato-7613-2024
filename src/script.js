@@ -204,7 +204,6 @@ function atualizarAvatar() {
 
         })
         .catch(error => {
-            console.error('Erro:', error);
         });
 }
 
@@ -214,7 +213,12 @@ function verificarLogin() {
     console.log("Chegou 1")
 
     if (!token) {
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
+        const code = getQueryParam('code');
+        let paginaPreLogin = window.location.pathname;
+        if (code) {
+            paginaPreLogin += `?code=${code}`;
+        }
+        localStorage.setItem('paginaPreLogin', paginaPreLogin);
         window.location.href = 'index.html';
         return;
     }
@@ -223,7 +227,12 @@ function verificarLogin() {
     const now = Date.now();
     const expirationTime = payload.exp * 1000;
     if (now >= expirationTime) {
-        localStorage.setItem('paginaPreLogin', window.location.pathname);
+        const code = getQueryParam('code');
+        let paginaPreLogin = window.location.pathname;
+        if (code) {
+            paginaPreLogin += `?code=${code}`;
+        }
+        localStorage.setItem('paginaPreLogin', paginaPreLogin);
         window.location.href = 'index.html';
         return;
     }
@@ -316,6 +325,32 @@ function deslogar() {
     window.location.href = "index.html";
 }
 
+// Função para cadastrar QRCodeUser
+function cadastrarQrcodeUser(usuario, qrcode) {
+    fetch('https://5xwp6h-3000.csb.app/cadastrarQrcodeUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: usuario,
+            qrcodeId: qrcode
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Erro:", data.error); // Exibe erro no console
+            } else {
+                console.log("Sucesso:", data.message); // Exibe mensagem de sucesso
+                // Redirecionar ou executar ação adicional após sucesso, se necessário
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao cadastrar QRCodeUser:", error);
+        });
+}
+
 async function redirecionarQRCode() {
     localStorage.removeItem('sequenciaQuiz');
     localStorage.setItem('sequenciaQuiz', 0);
@@ -330,38 +365,11 @@ async function redirecionarQRCode() {
         voltarHome()
     }
     else {
-        if (!token) {
-            alert('Usuário não está logado.');
+        if (!code) {
+            alert('Código QR não encontrado.');
+            voltarHome();
         } else {
             fetch('https://5xwp6h-3000.csb.app/verificarQrcodeUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    qrcodeId: code
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.exists) {
-                        window.location.href = '/home.html';
-                    } else {
-                        console.log('QR Code não cadastrado para o usuário, pode prosseguir.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
-        }
-
-        // Verifica se o code existe
-        if (!code) {
-            alert('Código QR não encontrado na URL.');
-        } else {
-            // Fazer a requisição ao backend para verificar se o QR Code já está cadastrado para o usuário
-            fetch('http://seu-servidor.com/verificarQrcodeUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -374,9 +382,10 @@ async function redirecionarQRCode() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {
-                        window.location.href = '/home.html';
+                        voltarHome();
                     } else {
                         console.log('QR Code não cadastrado para o usuário, pode prosseguir.');
+                        cadastrarQrcodeUser(userId, code)
                     }
                 })
                 .catch(error => {
@@ -419,9 +428,22 @@ async function redirecionarQRCode() {
         const randomNum = Math.floor(Math.random() * 4) + 1;
 
         if (randomNum === 1) {
-            window.location.href = "homepuzzle.html";
+            fetch('https://5xwp6h-3000.csb.app/contarPuzzlesPendentes')
+                .then(response => response.json())
+                .then(data => {
+                    const puzzlesPendentes = data.puzzlesPendentes;
+
+                    if (puzzlesPendentes > 0) {
+                        window.location.href = 'homepuzzle.html';
+                    } else {
+                        window.location.href = 'homepuzzle.html';//
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao verificar puzzles pendentes:", error);
+                });
         } else {
-            window.location.href = "homequiz.html";
+            window.location.href = "homepuzzle.html";//
         }
     }
 }
@@ -577,33 +599,41 @@ function voltarHome() {
 
 // Função para buscar o puzzle e seus passos
 function fetchPuzzle() {
-    fetch('https://5xwp6h-3000.csb.app/getPuzzle')
-        .then(response => response.json())
-        .then(data => {
-            const passosContainer = document.querySelector('.div-home-laranja');
-            const botao = document.querySelector('.botao-voltar-laranja');
-            const h3 = document.querySelector('.div-home-laranja h3');
+    let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
+    localStorage.setItem('sequenciaQuiz', sequenciaQuiz);
 
-            // Remove quaisquer passos anteriores antes de adicionar novos
-            passosContainer.querySelectorAll('h4').forEach(h4 => h4.remove());
+    if (sequenciaQuiz != 11) {
+        voltarHome();
+    }
+    else {
+        fetch('https://5xwp6h-3000.csb.app/getPuzzle')
+            .then(response => response.json())
+            .then(data => {
+                const passosContainer = document.querySelector('.div-home-laranja');
+                const botao = document.querySelector('.botao-voltar-laranja');
+                const h3 = document.querySelector('.div-home-laranja h3');
 
-            // Itera pelos passos e cria um novo elemento <h4> para cada um
-            data.passos.forEach((passo, index) => {
-                const h4 = document.createElement('h4');
-                h4.innerText = `${passo.texto}`;
-                passosContainer.insertBefore(h4, h3); // Insere antes do h3 e do botão
+                // Remove quaisquer passos anteriores antes de adicionar novos
+                passosContainer.querySelectorAll('h4').forEach(h4 => h4.remove());
+
+                // Itera pelos passos e cria um novo elemento <h4> para cada um
+                data.passos.forEach((passo, index) => {
+                    const h4 = document.createElement('h4');
+                    h4.innerText = `${passo.texto}`;
+                    passosContainer.insertBefore(h4, h3); // Insere antes do h3 e do botão
+                });
+
+                // Opcional: adicionar uma mensagem se o puzzle não tiver passos
+                if (data.passos.length === 0) {
+                    const noPassosMessage = document.createElement('h4');
+                    noPassosMessage.innerText = 'Este puzzle não tem passos.';
+                    passosContainer.insertBefore(noPassosMessage, h3);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar o puzzle:', error);
             });
-
-            // Opcional: adicionar uma mensagem se o puzzle não tiver passos
-            if (data.passos.length === 0) {
-                const noPassosMessage = document.createElement('h4');
-                noPassosMessage.innerText = 'Este puzzle não tem passos.';
-                passosContainer.insertBefore(noPassosMessage, h3);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao buscar o puzzle:', error);
-        });
+    }
 }
 
 // Função para capturar o código da URL

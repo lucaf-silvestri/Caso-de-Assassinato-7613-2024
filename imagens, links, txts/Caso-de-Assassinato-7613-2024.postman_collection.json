@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "29a64f24-53b2-44ec-a8de-c1adaf9c2e58",
+		"name": "Caso-de-Assassinato-7613-2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20301281"
+	},
+	"item": [
+		{
+			"name": "Perguntas e respostas",
+			"item": [
+				{
+					"name": "cadastrarPergunta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"texto\" : \"Em qual filme de terror de 1999 um grupo de documentaristas se perde na floresta enquanto investigam uma lenda urbana sobre uma bruxa?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarPergunta",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarPergunta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarResposta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pergunta_id\" : 40,\r\n    \"texto\" : \"O Chamado\",\r\n    \"correta\" : 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarResposta",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarResposta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contarPerguntas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/contarPerguntas",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"contarPerguntas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarRespostas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarRespostas",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarRespostas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPerguntas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarPerguntas",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarPerguntas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterPerguntaPeloId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarPergunta/2",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarPergunta",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterRespostas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pergunta\": 39\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/obterRespostas",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"obterRespostas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletarResposta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 144\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Puzzles",
+			"item": [
+				{
+					"name": "cadastrarPuzzle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\" : \"Desafio do Relógio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarPuzzle",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarPuzzle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar passoPuzzle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"puzzle_id\" : 10,\r\n    \"texto\" : \"3. Quando tiver a resposta, diga para a Noiva Cadáver ou ao Cientista da festa e receba sua recompensa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarPassopuzzle",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarPassopuzzle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPuzzles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiYXZhdGFyIjoiY2FybGluaG9zLnBuZyIsInBvbnRvcyI6MCwicXJjb2RlcyI6MCwibm9tZSI6Ikx1Y2FzIGNhZ8OjbyIsImlhdCI6MTcyOTI4MjAzNSwiZXhwIjoxNzI5MjgzODM1fQ.VncAWTYlJSN5N8OPfayYK03oGb8K9qHGGsKq7YmvI7A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/resetPuzzles",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"resetPuzzles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPuzzles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarPuzzles",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarPuzzles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPassosPuzzle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarPassosPuzzle",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarPassosPuzzle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contarPuzzlesPendentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarPuzzles",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarPuzzles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletarPassoPuzzle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/deletarPassoPuzzle/27",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"deletarPassoPuzzle",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QRCodes",
+			"item": [
+				{
+					"name": "cadastrarQrcode",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"QRCode 30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarQrcode",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarQrcode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrarQrcodeUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 2,\r\n    \"qrcodeId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/cadastrarQrcodeUser",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"cadastrarQrcodeUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarQrcodes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarQrcodes",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarQrcodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarQrcodesUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://5xwp6h-3000.csb.app/buscarQrcodesUsers",
+							"protocol": "https",
+							"host": [
+								"5xwp6h-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarQrcodesUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "buscarUsuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/buscarUsuarios",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"buscarUsuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarPontos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/buscarPontos/1",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"buscarPontos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarQrcodes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/buscarQrcodes/1",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"buscarQrcodes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarUsuarioPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/dadosUsuario/1",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"dadosUsuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrarUsuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Luca\",\r\n    \"senha\" : \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/cadastrarUsuario",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"cadastrarUsuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alterarAvatar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Teste\",\r\n    \"avatar\" : \"freddykrueger.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/alterarAvatar",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"alterarAvatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"luca\",\r\n    \"senha\" : \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/login",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizarNome",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiYXZhdGFyIjoiY2FybGluaG9zLnBuZyIsInBvbnRvcyI6MCwicXJjb2RlcyI6MCwibm9tZSI6Ikx1Y2FzIGNhZ8OjbyIsImlhdCI6MTcyOTI4MjAzNSwiZXhwIjoxNzI5MjgzODM1fQ.VncAWTYlJSN5N8OPfayYK03oGb8K9qHGGsKq7YmvI7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Lucas cagão2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/atualizar-nome",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"atualizar-nome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizarSenha",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiYXZhdGFyIjoiY2FybGluaG9zLnBuZyIsInBvbnRvcyI6MCwicXJjb2RlcyI6MCwibm9tZSI6Ikx1Y2FzIGNhZ8OjbyIsImlhdCI6MTcyOTI4MjAzNSwiZXhwIjoxNzI5MjgzODM1fQ.VncAWTYlJSN5N8OPfayYK03oGb8K9qHGGsKq7YmvI7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"novaSenha\" : \"pora\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/atualizar-senha",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"atualizar-senha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizarPontos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiYXZhdGFyIjoiY2FybGluaG9zLnBuZyIsInBvbnRvcyI6MCwicXJjb2RlcyI6MCwibm9tZSI6Ikx1Y2FzIGNhZ8OjbyIsImlhdCI6MTcyOTI4MjAzNSwiZXhwIjoxNzI5MjgzODM1fQ.VncAWTYlJSN5N8OPfayYK03oGb8K9qHGGsKq7YmvI7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pontos\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/atualizarPontos/1",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"atualizarPontos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizarQrcodes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiYXZhdGFyIjoiY2FybGluaG9zLnBuZyIsInBvbnRvcyI6MCwicXJjb2RlcyI6MCwibm9tZSI6Ikx1Y2FzIGNhZ8OjbyIsImlhdCI6MTcyOTI4MjAzNSwiZXhwIjoxNzI5MjgzODM1fQ.VncAWTYlJSN5N8OPfayYK03oGb8K9qHGGsKq7YmvI7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qrcodes\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/atualizarQrcodes/1",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"atualizarQrcodes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verificarQrcodeUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiamFzb24ucG5nIiwicG9udG9zIjozNTAsInFyY29kZXMiOjM3LCJub21lIjoibHVjYSIsImlhdCI6MTcyOTczMjE5MiwiZXhwIjoxNzI5NzMzOTkyfQ.LwQdmQnHF6pCFqlLSQUIuBYeeDkMac07cZO2YfzS1cc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"qrcodeId\": 25\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://5xwp6h-3000.csb.app/verificarQrcodeUser",
+					"protocol": "https",
+					"host": [
+						"5xwp6h-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"verificarQrcodeUser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
