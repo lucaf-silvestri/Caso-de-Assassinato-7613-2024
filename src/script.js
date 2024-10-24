@@ -197,6 +197,13 @@ function atualizarAvatar() {
                 const pontos = data.pontos || 0;
                 document.getElementById('pontos').textContent = pontos;
             }
+            else if (window.location.pathname.includes("pontosextras.html")) {
+                const avatarUrl = data.avatar || 'jigsaw.png';
+                document.getElementById('profile-img').src = 'img/' + avatarUrl;
+
+                const pontos = data.pontos || 0;
+                document.getElementById('pontos').textContent = pontos;
+            }
             else {
                 const avatarUrl = data.avatar || 'jigsaw.png';
                 document.getElementById('profile-img').src = 'img/' + avatarUrl;
@@ -240,7 +247,7 @@ function verificarLogin() {
 
 // Função para atualizar o nome do usuário
 function atualizarNome() {
-    const novoNome = document.getElementById("nome").value;
+    const novoNome = document.getElementById("nome").value.toLowerCase();;
     const token = localStorage.getItem("token");
 
     if (!token) {
