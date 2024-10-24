@@ -456,6 +456,8 @@ async function redirecionarQRCode() {
 }
 
 async function redirecionarPontosExtras() {
+
+    
     localStorage.removeItem('sequenciaQuiz');
     localStorage.setItem('sequenciaQuiz', 0);
     let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
