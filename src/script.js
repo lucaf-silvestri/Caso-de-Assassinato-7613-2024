@@ -9,7 +9,7 @@ function cadastrarUsuario() {
     const senha = document.getElementById('senha1').value;
     localStorage.setItem('nomeCadastro', nome);
 
-    fetch('https://5xwp6h-3000.csb.app/cadastrarUsuario', {
+    fetch('https://h566p4-3000.csb.app/cadastrarUsuario', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ function alterarAvatar(av) {
         }
     }
 
-    fetch('https://5xwp6h-3000.csb.app/alterarAvatar', {
+    fetch('https://h566p4-3000.csb.app/alterarAvatar', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ function login() {
     const senha = document.getElementById('senha1').value;
     const paginaPreLogin = localStorage.getItem('paginaPreLogin');
 
-    fetch('https://5xwp6h-3000.csb.app/login', {
+    fetch('https://h566p4-3000.csb.app/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function atualizarAvatar() {
     }
 
     // Faz uma solicitação para buscar as informações do usuário (incluindo avatar, pontos e QR codes)
-    fetch(`https://5xwp6h-3000.csb.app/dadosUsuario/${userId}`, {
+    fetch(`https://h566p4-3000.csb.app/dadosUsuario/${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -169,7 +169,7 @@ function atualizarAvatar() {
         })
         .then(data => {
             if (window.location.pathname.includes("home.html")) {
-                console.log("foi")
+                verificarHomePos();
                 const avatarUrl = data.avatar || 'jigsaw.png';
                 document.getElementById('profile-img').src = 'img/' + avatarUrl;
 
@@ -181,6 +181,20 @@ function atualizarAvatar() {
 
                 const nome = data.nome || "Player";
                 document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! Encontre pistas e leia os QR CODEs para somar pontos";
+            }
+            else if (window.location.pathname.includes("homepos.html")) {
+                verificarHome();
+                const avatarUrl = data.avatar || 'jigsaw.png';
+                document.getElementById('profile-img').src = 'img/' + avatarUrl;
+
+                const pontos = data.pontos || 0;
+                document.getElementById('pontos').textContent = pontos;
+
+                const qrcodes = data.qrcodes || 0;
+                document.getElementById('qrcodes').textContent = qrcodes;
+
+                const nome = data.nome || "Player";
+                document.getElementById('h1').textContent = "Bem-vindo, " + nome + "! A investigação terminou";
             }
             else if (window.location.pathname.includes("homequiz.html") || window.location.pathname.includes("homepuzzle.html")) {
                 console.log("foi")
@@ -212,6 +226,46 @@ function atualizarAvatar() {
         })
         .catch(error => {
         });
+}
+
+async function verificarHomePos() {
+    const token = localStorage.getItem('token');
+    const checkResponse = await fetch(`https://h566p4-3000.csb.app/home/existe/homepos`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    if (!checkResponse.ok) {
+        throw new Error('Erro ao verificar se "homepos" existe.');
+    }
+    const checkData = await checkResponse.json();
+    if (checkData.existe) {
+        console.log('Saindo da home porque "homepos" existe no banco de dados.');
+        window.location.href = "homepos.html";
+    }
+}
+
+async function verificarHome() {
+    const token = localStorage.getItem('token');
+    const checkResponse = await fetch(`https://h566p4-3000.csb.app/home/existe/homepos`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    if (!checkResponse.ok) {
+        throw new Error('Erro ao verificar se "homepos" existe.');
+    }
+    const checkData = await checkResponse.json();
+    if (checkData.existe) {
+        console.log('Saindo da home porque "homepos" existe no banco de dados.');
+    }
+    else {
+        window.location.href = "home.html";
+    }
 }
 
 // Função para verificar se o usuário está logado
@@ -262,7 +316,7 @@ function atualizarNome() {
     };
 
     // Faz a requisição PUT ao servidor para atualizar o nome
-    fetch("https://5xwp6h-3000.csb.app/atualizar-nome", {
+    fetch("https://h566p4-3000.csb.app/atualizar-nome", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -302,7 +356,7 @@ function atualizarSenha() {
         novaSenha: novaSenha
     };
 
-    fetch("https://5xwp6h-3000.csb.app/atualizar-senha", {
+    fetch("https://h566p4-3000.csb.app/atualizar-senha", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -334,7 +388,7 @@ function deslogar() {
 
 // Função para cadastrar QRCodeUser
 function cadastrarQrcodeUser(usuario, qrcode) {
-    fetch('https://5xwp6h-3000.csb.app/cadastrarQrcodeUser', {
+    fetch('https://h566p4-3000.csb.app/cadastrarQrcodeUser', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -376,7 +430,7 @@ async function redirecionarQRCode() {
             alert('Código QR não encontrado.');
             voltarHome();
         } else {
-            fetch('https://5xwp6h-3000.csb.app/verificarQrcodeUser', {
+            fetch('https://h566p4-3000.csb.app/verificarQrcodeUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -402,7 +456,7 @@ async function redirecionarQRCode() {
 
         await somar(10);
 
-        const response = await fetch(`https://5xwp6h-3000.csb.app/buscarQrcodes/${userId}`, {
+        const response = await fetch(`https://h566p4-3000.csb.app/buscarQrcodes/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -419,7 +473,7 @@ async function redirecionarQRCode() {
 
         const novosQRCodes = qrCodesAtual + 1;
 
-        const updateResponse = await fetch(`https://5xwp6h-3000.csb.app/atualizarQRCodes/${userId}`, {
+        const updateResponse = await fetch(`https://h566p4-3000.csb.app/atualizarQRCodes/${userId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -435,7 +489,7 @@ async function redirecionarQRCode() {
         const randomNum = Math.floor(Math.random() * 4) + 1;
 
         if (randomNum === 1) {
-            fetch('https://5xwp6h-3000.csb.app/contarPuzzlesPendentes')
+            fetch('https://h566p4-3000.csb.app/contarPuzzlesPendentes')
                 .then(response => response.json())
                 .then(data => {
                     const puzzlesPendentes = data.puzzlesPendentes;
@@ -476,7 +530,23 @@ async function somar(quantidade) {
     const token = localStorage.getItem('token');
     const userId = obterIdDoUsuarioPeloToken(token);
 
-    const response = await fetch(`https://5xwp6h-3000.csb.app/buscarPontos/${userId}`, {
+    const checkResponse = await fetch(`https://h566p4-3000.csb.app/home/existe/homepos`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    if (!checkResponse.ok) {
+        throw new Error('Erro ao verificar se "homepos" existe.');
+    }
+    const checkData = await checkResponse.json();
+    if (checkData.existe) {
+        console.log('Não é possível somar pontos porque "homepos" existe no banco de dados.');
+        return;
+    }
+
+    const response = await fetch(`https://h566p4-3000.csb.app/buscarPontos/${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -493,7 +563,7 @@ async function somar(quantidade) {
 
     const novosPontos = pontosAtual + quantidade;
 
-    const updateResponse = await fetch(`https://5xwp6h-3000.csb.app/atualizarPontos/${userId}`, {
+    const updateResponse = await fetch(`https://h566p4-3000.csb.app/atualizarPontos/${userId}`, {
         method: 'PUT',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -517,7 +587,7 @@ function obterIdDoUsuarioPeloToken(token) {
 // Função para buscar a quantidade de perguntas
 async function fetchQuestionCount() {
     try {
-        const response = await fetch('https://5xwp6h-3000.csb.app/contarPerguntas');
+        const response = await fetch('https://h566p4-3000.csb.app/contarPerguntas');
         if (!response.ok) throw new Error('Erro ao buscar a quantidade de perguntas.');
 
         const data = await response.json();
@@ -530,7 +600,7 @@ async function fetchQuestionCount() {
 // Função para buscar a pergunta pelo ID
 async function fetchQuestionById(id) {
     try {
-        const response = await fetch(`https://5xwp6h-3000.csb.app/buscarPergunta/${id}`); // Altera a URL para o novo endpoint
+        const response = await fetch(`https://h566p4-3000.csb.app/buscarPergunta/${id}`); // Altera a URL para o novo endpoint
         if (!response.ok) throw new Error('Erro ao buscar a pergunta.');
         const questionData = await response.json();
         return questionData;
@@ -563,7 +633,7 @@ async function loadQuestion() {
 
 async function fetchAnswersByQuestionId(questionId) {
     try {
-        const response = await fetch('https://5xwp6h-3000.csb.app/obterRespostas', {
+        const response = await fetch('https://h566p4-3000.csb.app/obterRespostas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -630,7 +700,7 @@ function fetchPuzzle() {
         voltarHome();
     }
     else {
-        fetch('https://5xwp6h-3000.csb.app/getPuzzle')
+        fetch('https://h566p4-3000.csb.app/getPuzzle')
             .then(response => response.json())
             .then(data => {
                 const passosContainer = document.querySelector('.div-home-laranja');
@@ -666,40 +736,108 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
-// Função para verificar o status das perguntas de um usuário
-function quizFinalCerto() {
-    const token = localStorage.getItem("token");
-    const userId = obterIdDoUsuarioPeloToken(token);
-    if (!userId) {
-        console.log('ID de usuário inválido.');
-        return;
+async function atualizarStatusPergunta(id, pergunta) {
+    try {
+        const response = await fetch("https://h566p4-3000.csb.app/usuarios/perguntaTrue", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id, pergunta })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Erro:", errorData.error || "Erro desconhecido");
+            return;
+        }
+
+        const data = await response.json();
+        console.log("Resposta do servidor:", data.message);
+    } catch (error) {
+        console.error("Erro na requisição:", error);
     }
-
-    // Consulta o banco de dados para verificar o status das perguntas
-    const sql = `SELECT pergunta1Feita, pergunta2Feita, pergunta3Feita FROM usuarios WHERE id = ?`;
-
-    db.get(sql, [userId], (err, row) => {
-        if (err) {
-            console.error('Erro ao acessar o banco de dados:', err.message);
-            return;
-        }
-
-        if (!row) {
-            console.log('Usuário não encontrado.');
-            return;
-        }
-
-        if (!row.pergunta1Feita) {
-        } else if (!row.pergunta2Feita) {
-            console.log('A pergunta 1 foi feita, mas a pergunta 2 ainda não foi feita.');
-        } else if (!row.pergunta3Feita) {
-            console.log('As perguntas 1 e 2 foram feitas, mas a pergunta 3 ainda não foi feita.');
-        } else {
-            console.log('Todas as perguntas foram feitas.');
-        }
-    });
 }
 
+async function quizFinal() {
+    const token = localStorage.getItem('token');
+    const userId = obterIdDoUsuarioPeloToken(token);
+
+    const response = await fetch(`https://h566p4-3000.csb.app/verificar-perguntas/${userId}`);
+    if (!response.ok) {
+        console.error('Erro ao buscar dados do usuário:', response.statusText);
+        return;
+    }
+    const data = await response.json();
+    if (data.pergunta1Feita && window.location.pathname.includes('acusacoes.html')) {
+        window.location.href = 'acusacoes2.html';
+    }
+    else if (data.pergunta2Feita && window.location.pathname.includes('acusacoes2.html')) {
+        window.location.href = 'acusacoes3.html';
+    }
+    else if (data.pergunta3Feita && window.location.pathname.includes('acusacoes3.html')) {
+        window.location.href = 'finalquiz.html';
+    }
+}
+
+async function responderQuizFinal(perguntaAtual, ganhaPontos) {
+    const token = localStorage.getItem('token');
+    const userId = obterIdDoUsuarioPeloToken(token);
+    await atualizarStatusPergunta(userId, perguntaAtual);
+
+    if (ganhaPontos == 1) {
+        await somar(30);
+        let quantidade = parseInt(localStorage.getItem("quantidadePerguntasCertas")) || 0;
+        quantidade += 1;
+        localStorage.setItem("quantidadePerguntasCertas", quantidade);
+    }
+    if (perguntaAtual == 1) {
+        window.location.href = 'acusacoes2.html';
+    }
+    else if (perguntaAtual == 2) {
+        window.location.href = 'acusacoes3.html';
+    }
+    else if (perguntaAtual == 3) {
+        let quantidade = parseInt(localStorage.getItem("quantidadePerguntasCertas"));
+        if (quantidade == 3) {
+            await somar(10);
+        }
+        window.location.href = 'finalquiz.html';
+    }
+}
+
+async function buscarRanking() {
+    try {
+        const response = await fetch("https://h566p4-3000.csb.app/usuarios/ranking");
+
+        if (!response.ok) {
+            throw new Error("Erro ao buscar o ranking.");
+        }
+
+        const usuarios = await response.json();
+        const listaRanking = document.querySelector(".retangulos-lista");
+
+        listaRanking.innerHTML = '';
+
+        // Adiciona cada usuário à lista
+        usuarios.forEach((usuario, index) => {
+            const li = document.createElement("li");
+            li.className = "retangulo";
+
+            li.innerHTML = `
+                <div>
+                    <h1>${index + 1}</h1>
+                    <img src="img/${usuario.avatar}" alt="Imagem do jogador do ranking">
+                </div>
+                <h2>${usuario.nome}</h2>
+            `;
+
+            listaRanking.appendChild(li);
+        });
+    } catch (error) {
+        console.error("Erro:", error);
+    }
+}
 
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
@@ -723,6 +861,18 @@ window.onload = function () {
             }
             else if (currentPage === "puzzle.html") {
                 fetchPuzzle();
+            }
+            else if (currentPage === "acusacoes.html") {
+                quizFinal();
+            }
+            else if (currentPage === "acusacoes2.html") {
+                quizFinal();
+            }
+            else if (currentPage === "acusacoes3.html") {
+                quizFinal();
+            }
+            else if (currentPage === "ranking.html") {
+                buscarRanking();
             }
         }
     }

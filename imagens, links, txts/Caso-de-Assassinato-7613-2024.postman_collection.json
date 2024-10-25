@@ -24,10 +24,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarPergunta",
+							"raw": "https://h566p4-3000.csb.app/cadastrarPergunta",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -53,10 +53,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarResposta",
+							"raw": "https://h566p4-3000.csb.app/cadastrarResposta",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -73,10 +73,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/contarPerguntas",
+							"raw": "https://h566p4-3000.csb.app/contarPerguntas",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -88,35 +88,15 @@
 					"response": []
 				},
 				{
-					"name": "buscarRespostas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarRespostas",
-							"protocol": "https",
-							"host": [
-								"5xwp6h-3000",
-								"csb",
-								"app"
-							],
-							"path": [
-								"buscarRespostas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "buscarPerguntas",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarPerguntas",
+							"raw": "https://h566p4-3000.csb.app/buscarPerguntas",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -128,15 +108,35 @@
 					"response": []
 				},
 				{
+					"name": "buscarRespostas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://h566p4-3000.csb.app/buscarRespostas",
+							"protocol": "https",
+							"host": [
+								"h566p4-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"buscarRespostas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "obterPerguntaPeloId",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarPergunta/2",
+							"raw": "https://h566p4-3000.csb.app/buscarPergunta/2",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -163,10 +163,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/obterRespostas",
+							"raw": "https://h566p4-3000.csb.app/obterRespostas",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -184,12 +184,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 144\r\n}",
+							"raw": "{\r\n    \"id\": 164\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
+						},
+						"url": {
+							"raw": "https://h566p4-3000.csb.app/deletarResposta",
+							"protocol": "https",
+							"host": [
+								"h566p4-3000",
+								"csb",
+								"app"
+							],
+							"path": [
+								"deletarResposta"
+							]
 						}
 					},
 					"response": []
@@ -214,10 +226,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarPuzzle",
+							"raw": "https://h566p4-3000.csb.app/cadastrarPuzzle",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -243,10 +255,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarPassopuzzle",
+							"raw": "https://h566p4-3000.csb.app/cadastrarPassopuzzle",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -282,10 +294,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/resetPuzzles",
+							"raw": "https://h566p4-3000.csb.app/resetPuzzles",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -302,15 +314,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarPuzzles",
+							"raw": "https://h566p4-3000.csb.app/getPuzzle",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
 							"path": [
-								"buscarPuzzles"
+								"getPuzzle"
 							]
 						}
 					},
@@ -322,10 +334,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarPassosPuzzle",
+							"raw": "https://h566p4-3000.csb.app/buscarPassosPuzzle",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -342,15 +354,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarPuzzles",
+							"raw": "https://h566p4-3000.csb.app/contarPuzzlesPendentes",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
 							"path": [
-								"buscarPuzzles"
+								"contarPuzzlesPendentes"
 							]
 						}
 					},
@@ -371,10 +383,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/deletarPassoPuzzle/27",
+							"raw": "https://h566p4-3000.csb.app/deletarPassoPuzzle/27",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -406,10 +418,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarQrcode",
+							"raw": "https://h566p4-3000.csb.app/cadastrarQrcode",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -435,10 +447,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/cadastrarQrcodeUser",
+							"raw": "https://h566p4-3000.csb.app/cadastrarQrcodeUser",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -455,10 +467,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarQrcodes",
+							"raw": "https://h566p4-3000.csb.app/buscarQrcodes",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -475,10 +487,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://5xwp6h-3000.csb.app/buscarQrcodesUsers",
+							"raw": "https://h566p4-3000.csb.app/buscarQrcodesUsers",
 							"protocol": "https",
 							"host": [
-								"5xwp6h-3000",
+								"h566p4-3000",
 								"csb",
 								"app"
 							],
@@ -497,10 +509,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/buscarUsuarios",
+					"raw": "https://h566p4-3000.csb.app/buscarUsuarios",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -512,15 +524,36 @@
 			"response": []
 		},
 		{
+			"name": "ranking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/usuarios/ranking",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"usuarios",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "buscarPontos",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/buscarPontos/1",
+					"raw": "https://h566p4-3000.csb.app/buscarPontos/1",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -538,10 +571,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/buscarQrcodes/1",
+					"raw": "https://h566p4-3000.csb.app/buscarQrcodes/1",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -559,10 +592,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/dadosUsuario/1",
+					"raw": "https://h566p4-3000.csb.app/dadosUsuario/1",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -589,10 +622,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/cadastrarUsuario",
+					"raw": "https://h566p4-3000.csb.app/cadastrarUsuario",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -618,10 +651,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/alterarAvatar",
+					"raw": "https://h566p4-3000.csb.app/alterarAvatar",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -650,10 +683,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/login",
+					"raw": "https://h566p4-3000.csb.app/login",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -689,10 +722,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/atualizar-nome",
+					"raw": "https://h566p4-3000.csb.app/atualizar-nome",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -728,10 +761,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/atualizar-senha",
+					"raw": "https://h566p4-3000.csb.app/atualizar-senha",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -759,7 +792,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pontos\" : 1\r\n}",
+					"raw": "{\r\n    \"pontos\" : 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -767,10 +800,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/atualizarPontos/1",
+					"raw": "https://h566p4-3000.csb.app/atualizarPontos/1",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -807,10 +840,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/atualizarQrcodes/1",
+					"raw": "https://h566p4-3000.csb.app/atualizarQrcodes/1",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
@@ -839,7 +872,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 1,\r\n    \"qrcodeId\": 25\r\n}",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"qrcodeId\": 4\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -847,15 +880,175 @@
 					}
 				},
 				"url": {
-					"raw": "https://5xwp6h-3000.csb.app/verificarQrcodeUser",
+					"raw": "https://h566p4-3000.csb.app/verificarQrcodeUser",
 					"protocol": "https",
 					"host": [
-						"5xwp6h-3000",
+						"h566p4-3000",
 						"csb",
 						"app"
 					],
 					"path": [
 						"verificarQrcodeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "perguntaFalse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"pergunta\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/usuarios/perguntaFalse",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"usuarios",
+						"perguntaFalse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "perguntaTrue",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"pergunta\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/usuarios/perguntaTrue",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"usuarios",
+						"perguntaTrue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verificar-perguntas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/verificar-perguntas/1",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"verificar-perguntas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrarHome",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/home/cadastrar",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"home",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarHome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/home",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizarHome",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"novoTexto\": \"home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://h566p4-3000.csb.app/home",
+					"protocol": "https",
+					"host": [
+						"h566p4-3000",
+						"csb",
+						"app"
+					],
+					"path": [
+						"home"
 					]
 				}
 			},
