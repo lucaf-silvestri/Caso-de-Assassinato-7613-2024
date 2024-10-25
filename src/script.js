@@ -456,8 +456,6 @@ async function redirecionarQRCode() {
 }
 
 async function redirecionarPontosExtras() {
-
-
     localStorage.removeItem('sequenciaQuiz');
     localStorage.setItem('sequenciaQuiz', 0);
     let sequenciaQuiz = parseInt(localStorage.getItem('sequenciaQuiz') + 1);
@@ -668,9 +666,40 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
-function quizFinalCerto(){
-    
+// Função para verificar o status das perguntas de um usuário
+function quizFinalCerto() {
+    const token = localStorage.getItem("token");
+    const userId = obterIdDoUsuarioPeloToken(token);
+    if (!userId) {
+        console.log('ID de usuário inválido.');
+        return;
+    }
+
+    // Consulta o banco de dados para verificar o status das perguntas
+    const sql = `SELECT pergunta1Feita, pergunta2Feita, pergunta3Feita FROM usuarios WHERE id = ?`;
+
+    db.get(sql, [userId], (err, row) => {
+        if (err) {
+            console.error('Erro ao acessar o banco de dados:', err.message);
+            return;
+        }
+
+        if (!row) {
+            console.log('Usuário não encontrado.');
+            return;
+        }
+
+        if (!row.pergunta1Feita) {
+        } else if (!row.pergunta2Feita) {
+            console.log('A pergunta 1 foi feita, mas a pergunta 2 ainda não foi feita.');
+        } else if (!row.pergunta3Feita) {
+            console.log('As perguntas 1 e 2 foram feitas, mas a pergunta 3 ainda não foi feita.');
+        } else {
+            console.log('Todas as perguntas foram feitas.');
+        }
+    });
 }
+
 
 window.onload = function () {
     const botaoCadastrar = document.querySelector("#trocarnome .botao-cadastrar");
