@@ -42,7 +42,3 @@ Para executar o projeto localmente, siga as instruções abaixo:
 ## Contribuição
 
 Este aplicativo foi desenvolvido como um projeto pessoal, e contribuições externas não são necessárias no momento.
-
-## Licença
-
-Este projeto é licenciado sob a [Licença MIT](LICENSE).
